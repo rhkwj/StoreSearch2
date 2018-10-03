@@ -14,21 +14,21 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var searchResults = [SearchResult]()
-    
+    var hasSearched = false
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchResults = []
+        if searchBar.text! != "justin bieber" {
         for i in 0...2 {
             let searchResult = SearchResult()
             searchResult.name = String(format: "Fake Result %d for", i)
             searchResult.artistName = searchBar.text!
             searchResults.append(searchResult)
+            }
         }
         tableView.reloadData()
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,11 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        if searchResults.count == 0 {
+            return 1
+        } else {
+            return searchResults.count
+        }
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
@@ -58,10 +62,16 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
                                    reuseIdentifier: cellIdentifier)
         }
         // Replace all the code below this point
-        // change
-        let searchResult = searchResults[indexPath.row]
-        cell.textLabel!.text = searchResult.name
-        cell.detailTextLabel!.text = searchResult.artistName
+        // New code
+        if searchResults.count == 0 {
+            cell.textLabel!.text = "(Nothing found)"
+            cell.detailTextLabel!.text = ""
+        } else {
+            let searchResult = searchResults[indexPath.row]
+            cell.textLabel!.text = searchResult.name
+            cell.detailTextLabel!.text = searchResult.artistName
+        }
+        // End of new code
         return cell
     }
 
