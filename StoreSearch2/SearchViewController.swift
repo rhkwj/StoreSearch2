@@ -27,6 +27,7 @@ class SearchViewController: UIViewController {
             searchResults.append(searchResult)
             }
         }
+        hasSearched = true
         tableView.reloadData()
     }
     
@@ -41,7 +42,9 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchResults.count == 0 {
+        if !hasSearched {
+            return 0
+        } else if searchResults.count == 0 {
             return 1
         } else {
             return searchResults.count
@@ -75,4 +78,16 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if searchResults.count == 0 {
+            return nil
+        } else {
+            return indexPath
+        }
+    }
+    
 }
