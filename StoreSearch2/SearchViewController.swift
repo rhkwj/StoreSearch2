@@ -40,12 +40,14 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0,bottom: 0, right: 0)
-        let cellNib = UINib(nibName:
+        var cellNib = UINib(nibName:
             TableViewCellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
+        cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier:
+            TableViewCellIdentifiers.nothingFoundCell)
         tableView.rowHeight = 80
     }
-
 
 }
 
@@ -65,21 +67,17 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier:
-            "SearchResultCell", for: indexPath)
-            as! SearchResultCell
+
         if searchResults.count == 0 {
-            cell.nameLabel.text = "(Nothing found)"
-            cell.artistNameLabel.text = ""
+            return tableView.dequeueReusableCell(withIdentifier:
+                TableViewCellIdentifiers.nothingFoundCell, for: indexPath)
         } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             let searchResult = searchResults[indexPath.row]
             cell.nameLabel.text = searchResult.name
             cell.artistNameLabel.text = searchResult.artistName
-        }
-        return cell
-        
-    }
+            return cell
+        } }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
