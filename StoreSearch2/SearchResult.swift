@@ -11,9 +11,6 @@ import Foundation
 
 
 class SearchResult {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var artistManeLabel: UILabel!
-    @IBOutlet weak var artworkImageView: UIImageView!
     
     var name = ""
     var artistName = ""

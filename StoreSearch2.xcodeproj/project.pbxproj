@@ -14,7 +14,7 @@
 		92001D7F216366A500EA4C16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92001D7D216366A500EA4C16 /* LaunchScreen.storyboard */; };
 		92001D872164683600EA4C16 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92001D862164683600EA4C16 /* SearchResult.swift */; };
 		92001D89216475B200EA4C16 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92001D88216475B200EA4C16 /* SearchResultCell.xib */; };
-		929043242165AB9A00C59C19 /* SearchResultCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929043232165AB9A00C59C19 /* SearchResultCellTableViewCell.swift */; };
+		929043262165B15B00C59C19 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929043252165B15B00C59C19 /* SearchResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		92001D80216366A500EA4C16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92001D862164683600EA4C16 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		92001D88216475B200EA4C16 /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
-		929043232165AB9A00C59C19 /* SearchResultCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCellTableViewCell.swift; sourceTree = "<group>"; };
+		929043252165B15B00C59C19 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +62,8 @@
 			children = (
 				92001D74216366A100EA4C16 /* AppDelegate.swift */,
 				92001D76216366A100EA4C16 /* SearchViewController.swift */,
-				929043232165AB9A00C59C19 /* SearchResultCellTableViewCell.swift */,
 				92001D862164683600EA4C16 /* SearchResult.swift */,
+				929043252165B15B00C59C19 /* SearchResultCell.swift */,
 				92001D78216366A100EA4C16 /* Main.storyboard */,
 				92001D7B216366A500EA4C16 /* Assets.xcassets */,
 				92001D88216475B200EA4C16 /* SearchResultCell.xib */,
@@ -147,7 +147,7 @@
 			files = (
 				92001D77216366A100EA4C16 /* SearchViewController.swift in Sources */,
 				92001D872164683600EA4C16 /* SearchResult.swift in Sources */,
-				929043242165AB9A00C59C19 /* SearchResultCellTableViewCell.swift in Sources */,
+				929043262165B15B00C59C19 /* SearchResultCell.swift in Sources */,
 				92001D75216366A100EA4C16 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
