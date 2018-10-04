@@ -59,19 +59,8 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(
-        //withIdentifier: "SearchResultCell", for: indexPath)
-        //if searchResults.count == 0 {
         
-        let cellIdentifier = "SearchResultCell"
-        var cell:UITableViewCell! = tableView.dequeueReusableCell(
-            withIdentifier: cellIdentifier)
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle,
-                                   reuseIdentifier: cellIdentifier)
-        }
-        // Replace all the code below this point
-        // New code
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
         if searchResults.count == 0 {
             cell.textLabel!.text = "(Nothing found)"
             cell.detailTextLabel!.text = ""
