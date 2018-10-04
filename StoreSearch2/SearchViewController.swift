@@ -47,6 +47,8 @@ class SearchViewController: UIViewController {
         tableView.register(cellNib, forCellReuseIdentifier:
             TableViewCellIdentifiers.nothingFoundCell)
         tableView.rowHeight = 80
+        // Show keyboard
+        searchBar.becomeFirstResponder()
     }
 
 }
