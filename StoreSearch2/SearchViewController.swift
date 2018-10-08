@@ -34,10 +34,21 @@ class SearchViewController: UIViewController {
         }
     }
     
+    func performStoreRequest(with url: URL) -> String? {
+        do {
+            return try String(contentsOf: url, encoding: .utf8)
+        } catch {
+            print("Download Error: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
     // MARK:- Private Methods
     func iTunesURL(searchText: String) -> URL {
+        let encodedText = searchText.addingPercentEncoding(
+            withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let urlString = String(format:
-            "https://itunes.apple.com/search?term=%@", searchText)
+            "https://itunes.apple.com/search?term=%@", encodedText)
         let url = URL(string: urlString)
         return url!
     }
