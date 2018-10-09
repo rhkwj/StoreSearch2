@@ -31,8 +31,7 @@ class SearchViewController: UIViewController {
             let url = iTunesURL(searchText: searchBar.text!)
             print("URL: '\(url)'")
             if let data = performStoreRequest(with: url) { // Modified
-                let results = parse(data: data)
-                print("Got results: \(results)")
+                searchResults = parse(data: data)
                 }
                 tableView.reloadData()
             }

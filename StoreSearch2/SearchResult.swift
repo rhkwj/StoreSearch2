@@ -13,12 +13,12 @@ class ResultArray:Codable {
     var results = [SearchResult]()
 }
 class SearchResult:Codable, CustomStringConvertible {
-    var kind = ""
+    var kind = String?
     var artistName = ""
     var trackName = ""
     var trackPrice = 0.0
     var currency = ""
-   
+    
     var imageSmall = ""
     var imageLarge = ""
     var storeURL = ""
@@ -37,6 +37,6 @@ class SearchResult:Codable, CustomStringConvertible {
     }
     
     var description:String {
-        return "Kind: \(kind), Name: \(name), Artist Name: \(artistName)\n"
+        return "Kind: \(kind ?? ""), Name: \(name), Artist Name: \(artistName)\n"
     }
 }
