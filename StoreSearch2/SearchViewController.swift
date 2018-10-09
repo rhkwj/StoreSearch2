@@ -38,11 +38,21 @@ class SearchViewController: UIViewController {
             }
         }
     
+    func showNetworkError() {
+        let alert = UIAlertController(title: "Whoops...",
+            message: "There was an error accessing the iTunes Store." +
+            " Please try again.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        present(alert, animated: true, completion: nil)
+        alert.addAction(action)
+    }
+    
     func performStoreRequest(with url: URL) -> Data? {
         do {
             return try Data (contentsOf: url)
         } catch {
             print("Download Error: \(error.localizedDescription)")
+            showNetworkError()
             return nil
         }
     }
