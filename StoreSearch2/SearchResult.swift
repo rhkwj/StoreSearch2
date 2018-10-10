@@ -13,7 +13,7 @@ class ResultArray:Codable {
     var results = [SearchResult]()
 }
 class SearchResult:Codable, CustomStringConvertible {
-    var kind = String?
+    var kind: String?
     var artistName = ""
     var trackName:String?
     var trackPrice:Double?
@@ -31,12 +31,14 @@ class SearchResult:Codable, CustomStringConvertible {
     enum CodingKeys: String, CodingKey {
         case imageSmall = "artworkUrl60"
         case imageLarge = "artworkUrl100"
-        case storeURL = "trackViewUrl"
-        case genre = "primaryGenreName"
+        case itemGenre = "primaryGenreName"
+        case bookGenre = "genres"
         case itemPrice = "price"
-        case kind, artistName, trackName
-        case trackPrice, currency
+        case kind, artistName, currency
+        case trackName, trackPrice, trackViewUrl
+        case collectionName, collectionViewUrl, collectionPrice
     }
+
     
     var name:String {
         return trackName ?? collectionName ?? ""
@@ -52,6 +54,11 @@ class SearchResult:Codable, CustomStringConvertible {
     var price:Double {
         return trackPrice ?? collectionPrice ?? itemPrice ?? 0.0
     }
+    
+    var type:String {
+        return kind ?? "audiobook"
+        }
+    
     var genre:String {
         if let genre = itemGenre {
             return genre
@@ -60,3 +67,4 @@ class SearchResult:Codable, CustomStringConvertible {
         }
         return "" }
 }
+
