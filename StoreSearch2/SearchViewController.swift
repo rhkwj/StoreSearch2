@@ -32,6 +32,9 @@ class SearchViewController: UIViewController {
             print("URL: '\(url)'")
             if let data = performStoreRequest(with: url) { // Modified
                 searchResults = parse(data: data)
+                searchResults.sort(by: { result1, result2 in
+                    return result1.name.localizedStandardCompare(
+                    result2.name) == .orderedAscending })
                 }
                 tableView.reloadData()
             }

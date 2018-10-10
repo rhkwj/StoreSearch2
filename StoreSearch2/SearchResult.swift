@@ -56,8 +56,22 @@ class SearchResult:Codable, CustomStringConvertible {
     }
     
     var type:String {
-        return kind ?? "audiobook"
+        let kind = self.kind ?? "audiobook"
+        switch kind {
+        case "album": return "Album"
+        case "audiobook": return "Audio Book"
+        case "book": return "Book"
+        case "ebook": return "E-Book"
+        case "feature-movie": return "Movie"
+        case "music-video": return "Music Video"
+        case "podcast": return "Podcast"
+        case "software": return "App"
+        case "song": return "Song"
+        case "tv-episode": return "TV Episode"
+        default: break
         }
+        return "Unknown"
+    }
     
     var genre:String {
         if let genre = itemGenre {
