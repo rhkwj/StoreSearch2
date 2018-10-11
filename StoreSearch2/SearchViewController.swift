@@ -29,17 +29,25 @@ class SearchViewController: UIViewController {
         
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
+            //New code
+            isLoading = true
+            tableView.reloadData()
+            /*
+             ... The networking code(commented out)
+             */
             hasSearched = true
             searchResults = []
             let url = iTunesURL(searchText: searchBar.text!)
             print("URL: '\(url)'")
-            if let data = performStoreRequest(with: url) { // Modified
+            if let data = performStoreRequest(with: url) {
+                // Modified
                 searchResults = parse(data: data)
                 searchResults.sort(by: <)
-                }
-                tableView.reloadData()
             }
+            isLoading = false
+            tableView.reloadData()
         }
+    }
     
     func showNetworkError() {
         let alert = UIAlertController(title: "Whoops...",
@@ -87,6 +95,16 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
 
+    func parse(data: Data) -> [SearchResult] {
+        do {
+            let decoder = JSONDecoder()
+            let result = try decoder.decode(ResultArray.self, from:data)
+            return result.results
+        } catch {
+            print("JSON Error: \(error)")
+            return []
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
@@ -112,7 +130,7 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
             let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
             spinner.startAnimating()
             return cell
-
+        }
         if searchResults.count == 0 {
             return tableView.dequeueReusableCell(withIdentifier:
                 TableViewCellIdentifiers.nothingFoundCell, for: indexPath)
@@ -126,28 +144,19 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
                 cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artistName, searchResult.type)
             }
             return cell
-        } }
+        }
+    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func parse(data: Data) -> [SearchResult] {
-        do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from:data)
-            return result.results
-        } catch {
-            print("JSON Error: \(error)")
-            return [] }
-    }
-    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if searchResults.count == 0 {
+        if searchResults.count == 0 || isLoading {
             return nil
         } else {
             return indexPath
         }
     }
-    
+}
 
