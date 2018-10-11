@@ -26,29 +26,29 @@ class SearchViewController: UIViewController {
 
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             isLoading = true
             tableView.reloadData()
             hasSearched = true
             searchResults = []
-            let queue = DispatchQueue.global()
-            let url = self.iTunesURL(searchText: searchBar.text!)
-            queue.async {
-                if let data = self.performStoreRequest(with: url) {
-                    self.searchResults = self.parse(data: data)
-                    self.searchResults.sort(by: <)
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.tableView.reloadData()
-                    }
-                    return
-                    }
-                }
-            }
+            // Replace all code after this with new code below // 1
+            let url = iTunesURL(searchText: searchBar.text!)
+            // 2
+            let session = URLSession.shared
+            // 3
+            let dataTask = session.dataTask(with: url,completionHandler: { data, response, error in
+                // 4
+           if let error = error {
+            print("Failure! \(error)")
+           } else {
+            print("Success! \(response!)")
+             }
+            })
+            // 5
+            dataTask.resume()
         }
-            
+    }
     
     func showNetworkError() {
         let alert = UIAlertController(title: "Whoops...",
@@ -59,15 +59,7 @@ class SearchViewController: UIViewController {
         alert.addAction(action)
     }
     
-    func performStoreRequest(with url: URL) -> Data? {
-        do {
-            return try Data (contentsOf: url)
-        } catch {
-            print("Download Error: \(error.localizedDescription)")
-            showNetworkError()
-            return nil
-        }
-    }
+    
     
     // MARK:- Private Methods
     func iTunesURL(searchText: String) -> URL {
