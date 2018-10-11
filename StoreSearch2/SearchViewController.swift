@@ -29,25 +29,26 @@ class SearchViewController: UIViewController {
         
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
-            //New code
             isLoading = true
             tableView.reloadData()
-            /*
-             ... The networking code(commented out)
-             */
             hasSearched = true
             searchResults = []
-            let url = iTunesURL(searchText: searchBar.text!)
-            print("URL: '\(url)'")
-            if let data = performStoreRequest(with: url) {
-                // Modified
-                searchResults = parse(data: data)
-                searchResults.sort(by: <)
+            let queue = DispatchQueue.global()
+            let url = self.iTunesURL(searchText: searchBar.text!)
+            queue.async {
+                if let data = self.performStoreRequest(with: url) {
+                    self.searchResults = self.parse(data: data)
+                    self.searchResults.sort(by: <)
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.tableView.reloadData()
+                    }
+                    return
+                    }
+                }
             }
-            isLoading = false
-            tableView.reloadData()
         }
-    }
+            
     
     func showNetworkError() {
         let alert = UIAlertController(title: "Whoops...",
