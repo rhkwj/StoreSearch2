@@ -20,4 +20,16 @@ class SearchResultCell: UITableViewCell {
         selectedView.backgroundColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 0.5)
         selectedBackgroundView = selectedView
     }
+    
+    // MARK:- Public Methods
+    func configure(for result: SearchResult) {
+        nameLabel.text = result.name
+        if result.artistName.isEmpty {
+            artistNameLabel.text = "Unknown"
+        } else {
+            artistNameLabel.text = String(format: "%@ (%@)", result.artistName, result.type)
+        }
+        
+    }
+    
 }
