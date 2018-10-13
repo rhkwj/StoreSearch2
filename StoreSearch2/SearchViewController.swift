@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
   
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
