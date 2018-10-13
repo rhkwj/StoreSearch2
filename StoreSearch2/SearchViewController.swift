@@ -12,7 +12,7 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-  
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     struct TableViewCellIdentifiers {
         static let searchResultCell = "SearchResultCell"
@@ -23,33 +23,54 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: URLSessionDataTask?
 
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        performSearch()
+    }
+    func performSearch() {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
+            dataTask?.cancel()
             isLoading = true
             tableView.reloadData()
             hasSearched = true
             searchResults = []
-            // Replace all code after this with new code below // 1
-            let url = iTunesURL(searchText: searchBar.text!)
-            // 2
+            let url = iTunesURL(searchText: searchBar.text!, category: segmentedControl.selectedSegmentIndex)
             let session = URLSession.shared
-            // 3
-            let dataTask = session.dataTask(with: url,completionHandler: { data, response, error in
-                // 4
-           if let error = error {
-            print("Failure! \(error)")
-           } else {
-            print("Success! \(response!)")
-             }
+            dataTask = session.dataTask(with: url, completionHandler: { data, response, error in
+                if let error = error as NSError?, error.code == -999 {
+                    return
+                } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    if let data = data {
+                        self.searchResults = self.parse(data: data)
+                        self.searchResults.sort(by: <)
+                        DispatchQueue.main.async {
+                            self.isLoading = false
+                            self.tableView.reloadData()
+                        }
+                        return
+                    }
+                } else {
+                    print("Failure! \(response!)")
+                }
+                DispatchQueue.main.async {
+                    self.hasSearched = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                    self.showNetworkError()
+                }
             })
-            // 5
-            dataTask.resume()
+            dataTask?.resume()
         }
     }
-    
+
     func showNetworkError() {
         let alert = UIAlertController(title: "Whoops...",
             message: "There was an error accessing the iTunes Store." +
@@ -62,20 +83,27 @@ class SearchViewController: UIViewController {
     
     
     // MARK:- Private Methods
-    func iTunesURL(searchText: String) -> URL {
+    func iTunesURL(searchText: String, category: Int) -> URL {
+        let kind: String
+        switch category {
+        case 1: kind = "musicTrack"
+        case 2: kind = "software"
+        case 3: kind = "ebook"
+        default: kind = ""
+        }
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format:
-            "https://itunes.apple.com/search?term=%@limit=200", encodedText)
+        let urlString = "https://itunes.apple.com/search?" +
+        "term=\(encodedText)&limit=200&entity=\(kind)"
         let url = URL(string: urlString)
         return url!
+        
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0,bottom: 0, right: 0)
+       tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         var cellNib = UINib(nibName:
             TableViewCellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
@@ -124,18 +152,13 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
             spinner.startAnimating()
             return cell
         }
-        if searchResults.count == 0 {
+        else if searchResults.count == 0 {
             return tableView.dequeueReusableCell(withIdentifier:
                 TableViewCellIdentifiers.nothingFoundCell, for: indexPath)
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
             let searchResult = searchResults[indexPath.row]
-            cell.nameLabel.text = searchResult.name
-            if searchResult.artistName.isEmpty {
-                cell.artistNameLabel.text = "Unknown"
-            } else {
-                cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artistName, searchResult.type)
-            }
+            cell.configure(for: searchResult)
             return cell
         }
     }
