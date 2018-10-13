@@ -23,6 +23,13 @@ class SearchResultCell: UITableViewCell {
         selectedBackgroundView = selectedView
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        downloadTask?.cancel()
+        downloadTask = nil
+    }
+    
+    
     // MARK:- Public Methods
     func configure(for result: SearchResult) {
         nameLabel.text = result.name
