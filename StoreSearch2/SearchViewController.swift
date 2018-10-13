@@ -23,6 +23,7 @@ class SearchViewController: UIViewController {
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: URLSessionDataTask?
 
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
