@@ -12,7 +12,6 @@ class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-  
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     struct TableViewCellIdentifiers {
@@ -31,6 +30,10 @@ class SearchViewController: UIViewController {
         performSearch()
     }
     
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        performSearch()
+    }
     func performSearch() {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
@@ -88,20 +91,27 @@ class SearchViewController: UIViewController {
     }
     
     // MARK:- Private Methods
-    func iTunesURL(searchText: String) -> URL {
+    func iTunesURL(searchText: String, category: Int) -> URL {
+        let kind: String
+        switch category {
+        case 1: kind = "musicTrack"
+        case 2: kind = "software"
+        case 3: kind = "ebook"
+        default: kind = ""
+        }
         let encodedText = searchText.addingPercentEncoding(
             withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let urlString = String(format:
-            "https://itunes.apple.com/search?term=%@limit=200", encodedText)
+        let urlString = "https://itunes.apple.com/search?" +
+        "term=\(encodedText)&limit=200&entity=\(kind)"
         let url = URL(string: urlString)
         return url!
+        
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0,bottom: 0, right: 0)
+       tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         var cellNib = UINib(nibName:
             TableViewCellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
