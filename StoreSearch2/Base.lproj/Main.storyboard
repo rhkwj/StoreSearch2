@@ -73,6 +73,7 @@
                         <outlet property="searchBar" destination="qRP-7f-CwR" id="QVk-2o-dlx"/>
                         <outlet property="segmentedControl" destination="6dA-Vk-e0J" id="f4e-PM-mq5"/>
                         <outlet property="tableView" destination="RGl-k5-9ao" id="wqy-z5-oXh"/>
+                        <segue destination="TMW-o4-9o3" kind="showDetail" id="37I-MR-Bfv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -90,10 +91,13 @@
                                 <rect key="frame" x="40" y="164" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKL-SC-d1p">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKL-SC-d1p" userLabel="Close Button">
                                         <rect key="frame" x="4" y="2" width="15" height="18"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="CloseButton"/>
+                                        <connections>
+                                            <action selector="close:" destination="TMW-o4-9o3" eventType="touchUpInside" id="kZp-Ce-Gyz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -105,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q47-nw-gRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926.25" y="91.901408450704224"/>
+            <point key="canvasLocation" x="1003" y="98"/>
         </scene>
     </scenes>
     <resources>

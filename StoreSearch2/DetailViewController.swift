@@ -10,6 +10,14 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    
+    // MARK:- Actions
+    
+    
+    @IBAction func close(_ sender: Any) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
