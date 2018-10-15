@@ -41,6 +41,21 @@ class DetailViewController: UIViewController {
         }
         kindLabel.text = searchResult.type
         genreLabel.text = searchResult.genre
+        // Show price
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = searchResult.currency
+        let priceText: String
+        if searchResult.price == 0 {
+            priceText = "Free"
+        } else if let text = formatter.string(
+            from: searchResult.price as NSNumber) {
+            priceText = text
+        } else {
+            priceText = ""
+        }
+        priceButton.setTitle(priceText, for: .normal)
+    
     }
     
     override func viewDidLoad() {
@@ -51,6 +66,9 @@ class DetailViewController: UIViewController {
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
         view.addGestureRecognizer(gestureRecognizer)
+        if searchResult != nil {
+            updateUI()
+        }
 
         // Do any additional setup after loading the view.
     }
