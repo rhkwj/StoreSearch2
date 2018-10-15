@@ -21,8 +21,6 @@ class DetailViewController: UIViewController {
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
     }
-    
-    
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var artworkImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -31,12 +29,28 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     
+    var searchResult: SearchResult!
     
+    // MARK:- Helper Methods
+    func updateUI() {
+        nameLabel.text = searchResult.name
+        if searchResult.artistName.isEmpty {
+            artistNameLabel.text = "Unknown"
+        } else {
+            artistNameLabel.text = searchResult.artistName
+        }
+        kindLabel.text = searchResult.type
+        genreLabel.text = searchResult.genre
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.tintColor = UIColor(red: 20/255, green: 160/255,blue: 160/255, alpha: 1)
         popupView.layer.cornerRadius = 10
+        let gestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(close))
+        gestureRecognizer.cancelsTouchesInView = false
+        gestureRecognizer.delegate = self
+        view.addGestureRecognizer(gestureRecognizer)
 
         // Do any additional setup after loading the view.
     }
@@ -62,5 +76,13 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
             return DimmingPresentationController(
                 presentedViewController: presented,
                 presenting: presenting)
+    }
+}
+
+extension DetailViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(
+        _ gestureRecognizer: UIGestureRecognizer,
+        shouldReceive touch: UITouch) -> Bool {
+        return (touch.view === self.view)
     }
 }
