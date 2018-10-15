@@ -10,12 +10,27 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        modalPresentationStyle = .custom
+        transitioningDelegate = self
+    }
     // MARK:- Actions
     
     
-    @IBAction func close(_ sender: Any) {
+    @IBAction func close() {
+        dismiss(animated: true, completion: nil)
     }
+    
+    
+    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var artworkImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var artistNameLabel: UILabel!
+    @IBOutlet weak var kindLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var priceButton: UIButton!
+    
     
     
     override func viewDidLoad() {
@@ -35,4 +50,15 @@ class DetailViewController: UIViewController {
     }
     */
 
+}
+
+extension DetailViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController?, source: UIViewController) ->
+        UIPresentationController? {
+            return DimmingPresentationController(
+                presentedViewController: presented,
+                presenting: presenting)
+    }
 }

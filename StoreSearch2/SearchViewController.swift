@@ -114,6 +114,9 @@ class SearchViewController: UIViewController {
         tableView.rowHeight = 80
         // Show keyboard
         searchBar.becomeFirstResponder()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     func parse(data: Data) -> [SearchResult] {
@@ -128,7 +131,7 @@ class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
+extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isLoading {
             return 1
@@ -165,6 +168,7 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
