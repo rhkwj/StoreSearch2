@@ -98,8 +98,19 @@ class DetailViewController: UIViewController {
     
     func animationController(forDismissed dismissed:
         UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        switch dismissStyle {
+        case .slide:
+            return SlideOutAnimationController()
+        case .fade:
+            return FadeOutAnimationController()
+        }
+    }
+    
+    func animationController(forPresented presented:
+        UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return SlideOutAnimationController()
     }
+    
     
 
     /*
