@@ -24,6 +24,8 @@ class SearchViewController: UIViewController {
     var hasSearched = false
     var isLoading = false
     var dataTask: URLSessionDataTask?
+    var landscapeVC: LandscapeViewController?
+
 
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -44,6 +46,18 @@ class SearchViewController: UIViewController {
             let indexPath = sender as! IndexPath
             let searchResult = searchResults[indexPath.row]
             detailViewController.searchResult = searchResult
+        }
+    }
+    
+    override func willTransition(
+        to newCollection: UITraitCollection,
+        with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        switch newCollection.verticalSizeClass {
+        case .compact:
+            showLandscape(with: coordinator)
+        case .regular, .unspecified:
+            hideLandscape(with: coordinator)
         }
     }
     
@@ -93,7 +107,23 @@ class SearchViewController: UIViewController {
         alert.addAction(action)
     }
     
-    
+    func showLandscape(with coordinator:
+        // 1
+        UIViewControllerTransitionCoordinator) {
+        guard landscapeVC == nil else { return }
+        // 2
+        landscapeVC = storyboard!.instantiateViewController(
+            withIdentifier: "LandscapeViewController")
+            as? LandscapeViewController
+        if let controller = landscapeVC {
+            // 3
+            controller.view.frame = view.bounds
+            // 4
+            view.addSubview(controller.view)
+            addChildViewController(controller)
+            controller.didMove(toParentViewController: self)
+        }
+    }
     
     // MARK:- Private Methods
     func iTunesURL(searchText: String, category: Int) -> URL {
