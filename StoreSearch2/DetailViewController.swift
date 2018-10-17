@@ -85,7 +85,7 @@ class DetailViewController: UIViewController {
         if searchResult != nil {
             updateUI()
         }
-
+        view.backgroundColor = UIColor.clear
         // Do any additional setup after loading the view.
     }
     
