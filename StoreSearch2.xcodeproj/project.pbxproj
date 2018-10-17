@@ -19,6 +19,8 @@
 		929043262165B15B00C59C19 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929043252165B15B00C59C19 /* SearchResultCell.swift */; };
 		929043282165B8D200C59C19 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929043272165B8D100C59C19 /* NothingFoundCell.xib */; };
 		92A617AC2172C6E000436141 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A617AB2172C6E000436141 /* DetailViewController.swift */; };
+		92A8DBA22176BDB30044D865 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A8DBA12176BDB30044D865 /* BounceAnimationController.swift */; };
+		92A8DBA42176C1540044D865 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A8DBA32176C1540044D865 /* SlideOutAnimationController.swift */; };
 		92E09A3921719BEE0071CE3C /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E09A3821719BEE0071CE3C /* UIImageView+DownloadImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		929043252165B15B00C59C19 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		929043272165B8D100C59C19 /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		92A617AB2172C6E000436141 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		92A8DBA12176BDB30044D865 /* BounceAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
+		92A8DBA32176C1540044D865 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		92E09A3821719BEE0071CE3C /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +77,8 @@
 				92001D74216366A100EA4C16 /* AppDelegate.swift */,
 				92001D7B216366A500EA4C16 /* Assets.xcassets */,
 				92A617AB2172C6E000436141 /* DetailViewController.swift */,
+				92A8DBA32176C1540044D865 /* SlideOutAnimationController.swift */,
+				92A8DBA12176BDB30044D865 /* BounceAnimationController.swift */,
 				92001D80216366A500EA4C16 /* Info.plist */,
 				924565FA216EE8E8004A7003 /* LoadingCell.xib */,
 				92001D78216366A100EA4C16 /* Main.storyboard */,
@@ -165,10 +171,12 @@
 				920482C821742B6E003BB188 /* DimmingPresentationController.swift in Sources */,
 				92001D872164683600EA4C16 /* SearchResult.swift in Sources */,
 				929043262165B15B00C59C19 /* SearchResultCell.swift in Sources */,
+				92A8DBA22176BDB30044D865 /* BounceAnimationController.swift in Sources */,
 				92A617AC2172C6E000436141 /* DetailViewController.swift in Sources */,
 				92001D75216366A100EA4C16 /* AppDelegate.swift in Sources */,
 				925D9C0E217632B600B00CB1 /* GradientView.swift in Sources */,
 				92E09A3921719BEE0071CE3C /* UIImageView+DownloadImage.swift in Sources */,
+				92A8DBA42176C1540044D865 /* SlideOutAnimationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

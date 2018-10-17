@@ -89,6 +89,11 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func animationController(forDismissed dismissed:
+        UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideOutAnimationController()
+    }
+    
 
     /*
     // MARK: - Navigation
