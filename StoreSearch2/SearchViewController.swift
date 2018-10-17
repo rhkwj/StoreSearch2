@@ -118,12 +118,34 @@ class SearchViewController: UIViewController {
         if let controller = landscapeVC {
             // 3
             controller.view.frame = view.bounds
+            controller.view.alpha = 0
             // 4
             view.addSubview(controller.view)
-            addChildViewController(controller)
-            controller.didMove(toParentViewController: self)
+            addChild(controller)
+            // Replace all code after this with the following lines
+            coordinator.animate(alongsideTransition: { _ in
+                controller.view.alpha = 1
+                self.searchBar.resignFirstResponder()
+            }, completion: { _ in
+            controller.didMove(toParent: self)
+            })
         }
     }
+    
+    func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator){
+        if let controller = landscapeVC {
+            controller.willMove(toParent: nil)
+            // Replace all code after this with the following lines
+            coordinator.animate(alongsideTransition: { _ in
+                controller.view.alpha = 0
+            }, completion: { _ in
+                controller.view.removeFromSuperview()
+                controller.removeFromParent()
+                self.landscapeVC = nil
+            }) }
+    }
+    
+
     
     // MARK:- Private Methods
     func iTunesURL(searchText: String, category: Int) -> URL {
