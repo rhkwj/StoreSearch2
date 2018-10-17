@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     
     
     @IBAction func close() {
+        dismissStyle = .slide
         dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var popupView: UIView!
@@ -35,8 +36,14 @@ class DetailViewController: UIViewController {
         }
     }
     
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
+     var dismissStyle = AnimationStyle.fade
     
     // MARK:- Helper Methods
     func updateUI() {
