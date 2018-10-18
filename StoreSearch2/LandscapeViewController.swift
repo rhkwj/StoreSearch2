@@ -42,6 +42,10 @@ class LandscapeViewController: UIViewController {
         scrollView.frame = view.bounds
         
         pageControl.frame = CGRect(x: 0, y: view.frame.size.height - pageControl.frame.size.height, width: view.frame.size.width, height: pageControl.frame.size.height)
+        if firstTime {
+            firstTime = false
+            tileButtons(searchResults)
+        }
         
     }
     
