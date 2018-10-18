@@ -25,6 +25,8 @@ class LandscapeViewController: UIViewController {
     
     
  private var firstTime = true
+ private var downloads = [URLSessionDownloadTask]()
+    
  var searchResults = [SearchResult]()
     
     override func viewDidLoad() {
@@ -134,6 +136,7 @@ class LandscapeViewController: UIViewController {
                 }
             }
             task.resume()
+             downloads.append(task)
         }
     }
     
@@ -162,6 +165,12 @@ class LandscapeViewController: UIViewController {
     }
     */
 
+    deinit {
+        print("deinit \(self)")
+        for task in downloads {
+            task.cancel()
+        }
+    }
 }
 
 extension LandscapeViewController: UIScrollViewDelegate {
