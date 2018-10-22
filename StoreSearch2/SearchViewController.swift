@@ -20,10 +20,7 @@ class SearchViewController: UIViewController {
         static let loadingCell = "LoadingCell"
     }
     
-    var searchResults = [SearchResult]()
-    var hasSearched = false
-    var isLoading = false
-    var dataTask: URLSessionDataTask?
+    private let search = Search()
     var landscapeVC: LandscapeViewController?
 
 
@@ -62,6 +59,16 @@ class SearchViewController: UIViewController {
     }
     
     func performSearch() {
+        search.performSearch(for: searchBar.text!,
+                category: segmentedControl.selectedSegmentIndex)
+        tableView.reloadData()
+        searchBar.resignFirstResponder()
+    }
+    
+    
+    /*
+    
+    func performSearch() {
         if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             dataTask?.cancel()
@@ -97,6 +104,8 @@ class SearchViewController: UIViewController {
             dataTask?.resume()
         }
     }
+    
+    */
 
     func showNetworkError() {
         let alert = UIAlertController(title: "Whoops...",
@@ -188,16 +197,7 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
     }
 
-    func parse(data: Data) -> [SearchResult] {
-        do {
-            let decoder = JSONDecoder()
-            let result = try decoder.decode(ResultArray.self, from:data)
-            return result.results
-        } catch {
-            print("JSON Error: \(error)")
-            return []
-        }
-    }
+   
 }
 
 extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
