@@ -30,10 +30,8 @@ class LandscapeViewController: UIViewController {
         switch search.state {
         case .notSearchedYet, .loading:
             break
-            
-        case .notSearchedYet, .loading, .noResults:
-            break
-            
+        case .noResults:
+            showNothingFoundLabel()
         case .results(let list):
             tileButtons(list)
         }
@@ -190,8 +188,13 @@ class LandscapeViewController: UIViewController {
                 break
             case .loading:
                 showSpinner()
+            
+            case .noResults:
+                showNothingFoundLabel()
+            
             case .noResults:
                 break
+                
             case .results(let list):
                 tileButtons(list)
           }
