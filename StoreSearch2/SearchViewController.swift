@@ -228,20 +228,26 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if search.isLoading {
-            let cell = tableView.dequeueReusableCell(withIdentifier:
-                TableViewCellIdentifiers.loadingCell, for: indexPath)
-            
-            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+        switch search.state {
+        case .notSearchedYet:
+            fatalError("Should never get here")
+        case .loading:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: TableViewCellIdentifiers.loadingCell,
+                for: indexPath)
+            let spinner = cell.viewWithTag(100) as!
+            UIActivityIndicatorView
             spinner.startAnimating()
             return cell
-        }
-        else if search.searchResults.count == 0 {
-            return tableView.dequeueReusableCell(withIdentifier:
-                TableViewCellIdentifiers.nothingFoundCell, for: indexPath)
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellIdentifiers.searchResultCell, for: indexPath) as! SearchResultCell
-            let searchResult = search.searchResults[indexPath.row]
+        case .noResults:
+            return tableView.dequeueReusableCell(
+                withIdentifier: TableViewCellIdentifiers.nothingFoundCell,
+                for: indexPath)
+        case .results(let list):
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: TableViewCellIdentifiers.searchResultCell,
+                for: indexPath) as! SearchResultCell
+            let searchResult = list[indexPath.row]
             cell.configure(for: searchResult)
             return cell
         }
