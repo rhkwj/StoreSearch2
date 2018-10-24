@@ -11,7 +11,12 @@ import Foundation
 typealias SearchComplete = (Bool) -> Void
 
 class Search {
-    
+    enum State {
+        case notSearchedYet
+        case loading
+        case noResults
+        case results([SearchResult])
+    }
     enum Category: Int {
         case all = 0
         case music = 1
@@ -28,10 +33,8 @@ class Search {
         }
     }
     
-    var searchResults: [SearchResult] = []
-    var hasSearched = false
-    var isLoading = false
     private var dataTask: URLSessionDataTask? = nil
+    private(set) var state: State = .notSearchedYet
     
    // func performSearch(for text: String, category: Int) {
    //print("Searching...")
