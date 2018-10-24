@@ -131,6 +131,9 @@ class LandscapeViewController: UIViewController {
             // 1
             let button = UIButton(type: .custom)
             button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
+            button.tag = 2000 + index
+            button.addTarget(self, action: #selector(buttonPressed),
+                             for: .touchUpInside)
             downloadImage(for: result, andPlaceOn: button)
             // 2
             button.frame = CGRect(x: x + paddingHorz,
