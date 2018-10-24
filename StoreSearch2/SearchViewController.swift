@@ -161,6 +161,9 @@ class SearchViewController: UIViewController {
             controller.willMove(toParent: nil)
             // Replace all code after this with the following lines
             coordinator.animate(alongsideTransition: { _ in
+                if self.presentedViewController != nil {
+                    self.dismiss(animated: true, completion: nil)
+                }
                 controller.view.alpha = 0
             }, completion: { _ in
                 controller.view.removeFromSuperview()

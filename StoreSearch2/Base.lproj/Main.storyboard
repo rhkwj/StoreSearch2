@@ -78,12 +78,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="884" y="-369"/>
         </scene>
         <!--Detail-->
         <scene sceneID="1jO-3T-LsB">
             <objects>
                 <viewController id="TMW-o4-9o3" userLabel="Detail" customClass="DetailViewController" customModule="StoreSearch2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0Bj-wk-9eb">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="0Bj-wk-9eb">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -229,6 +230,7 @@
                     <connections>
                         <outlet property="pageControl" destination="qMY-pX-ki4" id="wMl-vP-WqW"/>
                         <outlet property="scrollView" destination="2yp-lX-yLu" id="7U7-Si-m6E"/>
+                        <segue destination="TMW-o4-9o3" kind="presentation" identifier="ShowDetail" id="Agc-e6-Diq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Txb-hu-zV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,4 +242,7 @@
         <image name="CloseButton" width="15" height="15"/>
         <image name="PriceButton" width="11" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="37I-MR-Bfv"/>
+    </inferredMetricsTieBreakers>
 </document>

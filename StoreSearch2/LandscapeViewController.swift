@@ -127,7 +127,7 @@ class LandscapeViewController: UIViewController {
         var row = 0
         var column = 0
         var x = marginX
-        for (_, result) in searchResults.enumerated() {
+        for (index, result) in searchResults.enumerated() {
             // 1
             let button = UIButton(type: .custom)
             button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
@@ -216,17 +216,18 @@ class LandscapeViewController: UIViewController {
         spinner.startAnimating()
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func prepare(for segue: UIStoryboardSegue,
+                          sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            if case .results(let list) = search.state {
+                let detailViewController = segue.destination
+                    as! DetailViewController
+                let searchResult = list[(sender as! UIButton).tag - 2000]
+                detailViewController.searchResult = searchResult
+            }
+        }
     }
-    */
+ 
 
     deinit {
         print("deinit \(self)")
