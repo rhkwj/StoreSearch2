@@ -211,14 +211,15 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        if search.isLoading {
-            return 1  // Loading...
-        } else if !search.hasSearched {
-            return 0  // Not searched yet
-        } else if search.searchResults.count == 0 {
-            return 1  // Nothing Found
-        } else {
-            return search.searchResults.count
+        switch search.state {
+        case .notSearchedYet:
+            return 0
+        case .loading:
+            return 1
+        case .noResults:
+            return 1
+        case .results(let list):
+            return list.count
         }
     }
     
