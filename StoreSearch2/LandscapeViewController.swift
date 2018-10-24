@@ -23,6 +23,10 @@ class LandscapeViewController: UIViewController {
         }, completion: nil)
     }
     
+    @objc func buttonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowDetail", sender: sender)
+    }
+    
     // MARK:- Public Methods
     func searchResultsReceived() {
         hideSpinner()
