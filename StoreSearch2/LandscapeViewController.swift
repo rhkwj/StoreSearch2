@@ -158,12 +158,20 @@ class LandscapeViewController: UIViewController {
                 break
             case .results(let list):
                 tileButtons(list)
-        }
-        
+          }
         }
     }
     
-
+    private func showSpinner() {
+        let spinner = UIActivityIndicatorView( activityIndicatorStyle: .whiteLarge)
+        spinner.center = CGPoint(x: scrollView.bounds.midX + 0.5, y:scrollView.bounds.midY + 0.5)
+        spinner.tag = 1000
+        view.addSubview(spinner)
+        spinner.startAnimating()
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
