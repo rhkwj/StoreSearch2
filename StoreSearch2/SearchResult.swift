@@ -45,7 +45,7 @@ class SearchResult:Codable, CustomStringConvertible {
     }
     
     var description:String {
-        return "Kind: \(kind ?? ""), Name: \(name), Artist Name: \(artistName)\n"
+        return NSLocalizedString("Kind: \(kind ?? ""), Name: \(name), Artist Name: \(artistName)\n", comment: "Localized kind: Kind: \(kind ?? ""), Name: \(name), Artist Name: \(artistName)\n")
     }
     
     var storeURL:String {
