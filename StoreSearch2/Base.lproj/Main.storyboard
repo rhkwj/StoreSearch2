@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="TMW-o4-9o3" kind="relationship" relationship="rootViewController" id="iX8-aR-dmM"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVk-9t-z8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -91,14 +94,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="-369"/>
+            <point key="canvasLocation" x="84" y="446"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="bcx-0A-5jP">
             <objects>
                 <splitViewController id="sD7-Uf-xCy" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="axL-zS-XWa" kind="relationship" relationship="masterViewController" id="hJ8-KT-Z98"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="masterViewController" id="l9D-4Y-xR8"/>
+                        <segue destination="axL-zS-XWa" kind="relationship" relationship="detailViewController" id="ohu-pc-eLc"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="03s-dR-kyO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,6 +219,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bZE-N9-eEj"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Ixp-Xb-uNo"/>
                     <connections>
                         <outlet property="artistNameLabel" destination="3X0-e5-8Qb" id="Vk0-jY-ReU"/>
                         <outlet property="artworkImageView" destination="lq7-Ef-w29" id="R1j-Uv-qeb"/>
@@ -227,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q47-nw-gRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665" y="33"/>
+            <point key="canvasLocation" x="992" y="446"/>
         </scene>
         <!--Landscape-->
         <scene sceneID="zmj-Ru-OnT">
@@ -260,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Txb-hu-zV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="885" y="755"/>
+            <point key="canvasLocation" x="992" y="-371"/>
         </scene>
     </scenes>
     <resources>
@@ -268,6 +273,6 @@
         <image name="PriceButton" width="11" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="37I-MR-Bfv"/>
+        <segue reference="Agc-e6-Diq"/>
     </inferredMetricsTieBreakers>
 </document>
