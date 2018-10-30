@@ -195,6 +195,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        title = NSLocalizedString("Search", comment: "split view master button")
        tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         var cellNib = UINib(nibName:
             TableViewCellIdentifiers.searchResultCell, bundle: nil)
