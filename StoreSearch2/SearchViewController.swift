@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
     
     private let search = Search()
     var landscapeVC: LandscapeViewController?
-
+    weak var splitViewDetail: DetailViewController?
 
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -260,10 +260,28 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITabl
         }
     }
 
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        searchBar.resignFirstResponder()
+        if view.window!.rootViewController!.traitCollection
+            .horizontalSizeClass == .compact {
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "ShowDetail",
+                         sender: indexPath)
+        } else {
+            if case .results(let list) = search.state {
+                splitViewDetail?.searchResult = list[indexPath.row]
+            }
+        }
+    }
+    
+    
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "ShowDetail", sender: indexPath)
     }
+ */
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         switch search.state {
