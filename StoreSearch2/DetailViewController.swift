@@ -103,6 +103,9 @@ class DetailViewController: UIViewController {
             view.backgroundColor = UIColor(patternImage:
                 UIImage(named: "LandscapeBackground")!)
             popupView.isHidden = true
+            if let displayName = Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"] as? String {
+                title = displayName
+            }
         }
         let gestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
