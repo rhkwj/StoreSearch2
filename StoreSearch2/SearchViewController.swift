@@ -207,13 +207,21 @@ class SearchViewController: UIViewController {
         tableView.register(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
         tableView.rowHeight = 80
         // Show keyboard
-        searchBar.becomeFirstResponder()
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            searchBar.becomeFirstResponder()
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
     }
 
-   
+    private func hideMasterPane() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .primaryHidden
+        }, completion: { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
+        })
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -273,6 +281,10 @@ extension SearchViewController: UISearchBarDelegate, UITableViewDelegate, UITabl
             if case .results(let list) = search.state {
                 splitViewDetail?.searchResult = list[indexPath.row]
             }
+            if splitViewController!.displayMode != .allVisible {
+                hideMasterPane()
+            }
+            
         }
     }
     
