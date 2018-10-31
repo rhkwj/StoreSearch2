@@ -43,7 +43,8 @@ class DetailViewController: UIViewController {
     
     var searchResult: SearchResult!
     var downloadTask: URLSessionDownloadTask?
-     var dismissStyle = AnimationStyle.fade
+    var isPopUp = false
+    var dismissStyle = AnimationStyle.fade
     
     // MARK:- Helper Methods
     func updateUI() {
@@ -85,6 +86,18 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.tintColor = UIColor(red: 20/255, green: 160/255,blue: 160/255, alpha: 1)
         popupView.layer.cornerRadius = 10
+        if isPopUp {
+            let gestureRecognizer = UITapGestureRecognizer(target: self,
+                                    action: #selector(close))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            view.addGestureRecognizer(gestureRecognizer)
+            view.backgroundColor = UIColor.clear
+        } else {
+            view.backgroundColor = UIColor(patternImage:
+                UIImage(named: "LandscapeBackground")!)
+            popupView.isHidden = true
+        }
         let gestureRecognizer = UITapGestureRecognizer(target: self,action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
         gestureRecognizer.delegate = self
