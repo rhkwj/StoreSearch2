@@ -262,7 +262,7 @@
                         <viewLayoutGuide key="safeArea" id="bZE-N9-eEj"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ixp-Xb-uNo">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="YWO-Mu-7Bg">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="YWO-Mu-7Bg">
                             <connections>
                                 <segue destination="xvv-vQ-5Ot" kind="popoverPresentation" identifier="ShowMenu" popoverAnchorBarButtonItem="YWO-Mu-7Bg" id="8tN-8b-1c4">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -358,6 +358,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="204"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Anr-vg-wIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
