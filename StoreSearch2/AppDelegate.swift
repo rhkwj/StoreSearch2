@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UISplitViewControllerDelegate {
     func splitViewController(_ svc: UISplitViewController,
-        willChangeTo displayMode: UISplitViewControllerDisplayMode) {
+                             willChangeTo displayMode: UISplitViewController.DisplayMode) {
         print(#function)
         if displayMode == .primaryOverlay {
             svc.dismiss(animated: true, completion: nil)
