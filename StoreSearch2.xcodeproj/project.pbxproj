@@ -26,6 +26,7 @@
 		92A8DBA821772B120044D865 /*  FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A8DBA721772B120044D865 /*  FadeOutAnimationController.swift */; };
 		92C2083C218695E800FDA3D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92C2083E218695E800FDA3D9 /* Localizable.strings */; };
 		92C208422187DEDD00FDA3D9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92C208442187DEDD00FDA3D9 /* InfoPlist.strings */; };
+		92DC3EC3218ADDFA006F0E93 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC3EC2218ADDFA006F0E93 /* MenuTableViewController.swift */; };
 		92E09A3921719BEE0071CE3C /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E09A3821719BEE0071CE3C /* UIImageView+DownloadImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		92C2083F2186C9D500FDA3D9 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92C208432187DEDD00FDA3D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92C208452187DEE300FDA3D9 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		92DC3EC2218ADDFA006F0E93 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		92E09A3821719BEE0071CE3C /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				92001D74216366A100EA4C16 /* AppDelegate.swift */,
+				92DC3EC2218ADDFA006F0E93 /* MenuTableViewController.swift */,
 				92001D7B216366A500EA4C16 /* Assets.xcassets */,
 				92A8DBA12176BDB30044D865 /* BounceAnimationController.swift */,
 				92A617AB2172C6E000436141 /* DetailViewController.swift */,
@@ -198,6 +201,7 @@
 				92A8DBA22176BDB30044D865 /* BounceAnimationController.swift in Sources */,
 				92A8DBA62176C6990044D865 /* LandscapeViewController.swift in Sources */,
 				92A617AC2172C6E000436141 /* DetailViewController.swift in Sources */,
+				92DC3EC3218ADDFA006F0E93 /* MenuTableViewController.swift in Sources */,
 				92001D75216366A100EA4C16 /* AppDelegate.swift in Sources */,
 				92A8DBA821772B120044D865 /*  FadeOutAnimationController.swift in Sources */,
 				925D9C0E217632B600B00CB1 /* GradientView.swift in Sources */,

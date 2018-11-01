@@ -284,10 +284,10 @@
             </objects>
             <point key="canvasLocation" x="991.40625" y="445.89843749999994"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="v7K-Hx-KX1">
             <objects>
-                <tableViewController id="xvv-vQ-5Ot" sceneMemberID="viewController">
+                <tableViewController id="xvv-vQ-5Ot" customClass="MenuViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Egv-n6-tvi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
