@@ -88,6 +88,16 @@ class DetailViewController: UIViewController {
         downloadTask?.cancel()
     }
     
+    // MARK:- Navigation
+    override func prepare(for segue: UIStoryboardSegue,
+                          sender: Any?) {
+        if segue.identifier == "ShowMenu" {
+            let controller = segue.destination as! MenuViewController
+            controller.delegate = self
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.tintColor = UIColor(red: 20/255, green: 160/255,blue: 160/255, alpha: 1)
@@ -165,3 +175,9 @@ extension DetailViewController: UIGestureRecognizerDelegate {
         return (touch.view === self.view)
     }
 }
+
+extension DetailViewController: MenuViewControllerDelegate {
+    func menuViewControllerSendEmail(_: MenuViewController) {
+    }
+}
+
