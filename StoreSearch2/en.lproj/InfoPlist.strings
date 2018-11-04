@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  StoreSearch2
+
+  Created by Kim Yeon Jeong on 2018/10/30.
+  Copyright © 2018 Kim Yeon Jeong. All rights reserved.
+*/
+
+CFBundleDisplayName = "StoreSearch";
